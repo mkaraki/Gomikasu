@@ -7,14 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Gomikasu
 {
     public partial class GomikasuForm : Form
     {
+        private static string SoundAppDir = Path.Combine(Application.StartupPath, "Sounds");
+
         public GomikasuForm()
         {
             InitializeComponent();
+
+            if (!Directory.Exists(SoundAppDir))
+            {
+                MessageBox.Show("Sounds フォルダがありません。", "Gomikasu Button");
+                Application.Exit();
+            }
         }
 
         private void twitter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -24,7 +33,13 @@ namespace Gomikasu
 
         private string GetSoundFile(string fname)
         {
-            return "Sounds/" + fname + ".wav";
+            string path = Path.Combine(SoundAppDir, fname + ".wav");
+            if (!File.Exists(path))
+            { 
+                MessageBox.Show($"Sounds フォルダに {fname}.wav がありません。", "Gomikasu Button");
+                Environment.Exit(1);
+            }
+            return path;
         }
 
         private void gomikasu_Click(object sender, EventArgs e)
