@@ -19,6 +19,13 @@ namespace Gomikasu
         {
             InitializeComponent();
 
+            Sounds = new Dictionary<string, System.Media.SoundPlayer>()
+            {
+                { "all", new System.Media.SoundPlayer(GetSoundFile("all")) },
+                { "gomikasu", new System.Media.SoundPlayer(GetSoundFile("gomikasu")) },
+                { "sine", new System.Media.SoundPlayer(GetSoundFile("sine")) },
+            };
+
             if (!Directory.Exists(SoundAppDir))
             {
                 MessageBox.Show("Sounds フォルダがありません。", "Gomikasu Button");
@@ -42,10 +49,13 @@ namespace Gomikasu
             return path;
         }
 
+        private Dictionary<string, System.Media.SoundPlayer> Sounds;
+
         private void gomikasu_Click(object sender, EventArgs e)
         {
             string fn = ((Button)sender).Name;
-            new System.Media.SoundPlayer(GetSoundFile(fn)).PlaySync();
+            var player = Sounds[fn];
+            player.Play();
         }
 
         private void about_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
