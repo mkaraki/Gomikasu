@@ -20,7 +20,9 @@
                 p.currentTime = 0;
             }
             p.play();
-            ga('send', 'event', 'Gomikasu Button Service', 'play', id)
+            gtag('event', 'play', {
+                event_label: id
+            });
         }
     </script>
 </head>
