@@ -34,9 +34,21 @@
 
     <div id="app">
         <div id="players">
-            <audio id="a-all" src="res/all.wav" preload="auto">ご利用の環境では一部の音声が再生されない場合がございます。</audio>
-            <audio id="a-gomikasu" src="res/gomikasu.wav" preload="auto"></audio>
-            <audio id="a-sine" src="res/sine.wav" preload="auto"></audio>
+            <audio id="a-all" preload="auto">
+                <source src="res/all.mp3" type="audio/mpeg">
+                <source src="res/all.wav" type="audio/wav">
+                <p>ご利用の環境では <i><code>ゴミカス　〇ね</code></i> の音声が再生されない場合がございます。</p>
+            </audio>
+            <audio id="a-gomikasu" preload="auto">
+                <source src="res/gomikasu.mp3" type="audio/mpeg">
+                <source src="res/gomikasu.wav" type="audio/wav">
+                <p>ご利用の環境では <i><code>ゴミカス</code></i> の音声が再生されない場合がございます。</p>
+            </audio>
+            <audio id="a-sine" preload="auto">
+                <source src="res/sine.mp3" type="audio/mpeg">
+                <source src="res/sine.wav" type="audio/wav">
+                <p>ご利用の環境では <i><code>〇ね</code></i> の音声が再生されない場合がございます。</p>
+            </audio>
         </div>
         <div id="btns">
             <button id="b-gomikasu" onclick="play('gomikasu');">ゴミカス</button>
